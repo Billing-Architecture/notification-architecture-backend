@@ -1,20 +1,24 @@
-const nodemailer = require("config/outlook_config");
+const transporter = require("config/outlook_config");
 
-const sendEmail = async (to, subject, text) => {
-    const mailOptions = {
-        from: process.env.OUTLOOK_EMAIL,
-        to,
-        subject,
-        text,
-    };
+const s_send_email_bill = async (to, subject, text) => {
     try {
-        await nodemailer.sendMail(mailOptions);
-        return true
+        const mailOptions = {
+            from: process.env.OUTLOOK_EMAIL,
+            to,
+            subject,
+            text,
+        };
+        await transporter.sendMail(mailOptions);
+        return true;
     } catch (error) { 
-        return false
+        return false;
     }
 }
 
+const s_send_email_payment = async (to, subject, text) => {
+};
+
 module.exports = {
-    sendEmail
+    s_send_email_bill,
+    s_send_email_payment,
 };
