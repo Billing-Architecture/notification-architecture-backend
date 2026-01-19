@@ -7,19 +7,27 @@ const {
     s_save_notification
 } = require('../services/notifications_service');
 
+const {
+    generate_bill_PDF
+} = require('../services/pdf_service');
+
 const c_notify_user_bill = async (req, res) => {
     const { 
         notification_receiver, 
         notification_subject, 
         notification_message, 
-    } = req.body; 
+        details,
+    } = req.body;
+    
+    const pdf = await generate_bill_PDF(details);
 
-    const result = await s_send_email_bill(notification_receiver, notification_subject, notification_message);
+    const result = await s_send_email_bill(notification_receiver, notification_subject, notification_message, pdf);
 
     if (result) {
-        await s_save_notification(req.body);
+        await s_save_notification(req.body, 'SENT');
         res.status(200).json({ success: true });
     } else {
+        await s_save_notification(req.body, 'FAILED');
         res.status(500).json({ success: false });
     }
 }

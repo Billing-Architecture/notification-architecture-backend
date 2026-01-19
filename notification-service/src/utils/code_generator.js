@@ -1,4 +1,4 @@
-const unique_code_generator = (length = 8) => {
+const unique_code_generator = (prefix) => {
     const now = new Date();
     const pad = (n, size = 2) => n.toString().padStart(size, "0");
 
@@ -19,6 +19,4 @@ const unique_code_generator = (length = 8) => {
     return `${prefix}${date}${time}${milliseconds}`;
 }
 
-module.exports = {
-  unique_code_generator,
-};
+module.exports = unique_code_generator;
