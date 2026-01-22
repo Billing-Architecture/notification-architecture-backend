@@ -164,7 +164,7 @@ GMAIL_PASSWORD= Gmail service token
 
 ---
 
-# Execute Tests
+## Execute Tests
 The tests are run with:
 - npm test
 
