@@ -11,7 +11,7 @@ It is designed following best development practices, a modular architecture, and
 
 ## Technologies used
 - Node.js
-- Express.js
+- Express
 - PostgreSQL
 - Docker
 - Sequelize
